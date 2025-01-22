@@ -3,9 +3,11 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class TcpServer {
     public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
         final int port=5050;
         try{
             ServerSocket server=new ServerSocket(port);
@@ -24,7 +26,9 @@ public class TcpServer {
                 }
                 System.out.print((char)read);
             }
-            clientOut.write("Thank you for connecting".getBytes());
+            System.out.print(">> ");
+            String sendData=sc.nextLine();
+            clientOut.write(sendData.getBytes());
             clientOut.write('\0');
             clientSocket.close();
             server.close();
